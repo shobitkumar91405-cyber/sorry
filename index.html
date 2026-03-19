@@ -2,284 +2,339 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ntmy kavya 💫</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Note For You 💗 - From Sivasingh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Great+Vibes&display=swap');
-
-        * {
-            box-sizing: border-box;
+        /* Fixed Font Import */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&display=swap');
+        
+        body {
+            background: linear-gradient(180deg, #1a0033 0%, #000000 100%);
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
             margin: 0;
             padding: 0;
-            -webkit-tap-highlight-color: transparent;
         }
-
-        body, html {
-            width: 100vw;
+        
+        .slide {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100vh;
-            overflow: hidden;
-            font-family: 'Poppins', sans-serif;
-            background: radial-gradient(circle at center, #2a001a, #14001a, #000814);
-            color: #ffffff;
-            display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-        }
-
-        /* Fixed Top Handle */
-        .instagram-handle {
-            position: absolute;
-            top: 15px;
-            width: 100%;
-            font-weight: 400;
-            color: rgba(255, 204, 221, 0.8);
-            z-index: 1000;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .top-handle {
-            position: absolute;
-            top: 45px;
-            width: 100%;
-            font-weight: 600;
-            color: #ffccdd;
-            text-shadow: 0 0 12px #ff69b4;
-            z-index: 100;
-            font-size: 1.1rem;
-            letter-spacing: 2.5px;
-        }
-
-        .page {
-            position: absolute;
-            inset: 0;
-            display: flex;
             flex-direction: column;
+            transition: opacity 0.8s ease;
+            opacity: 0;
+        }
+        
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .neon-text {
+            text-shadow: 
+                0 0 10px #ff00cc,
+                0 0 20px #ff00cc,
+                0 0 40px #ff69b4,
+                0 0 80px #ff1493;
+        }
+        
+        .glow-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px #ff00cc;
+        }
+        
+        .glow-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px #ff00cc;
+        }
+        
+        .heart-float {
+            position: absolute;
+            font-size: 24px;
+            color: #ff69b4;
+            animation: floatHeart linear forwards;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 10;
+            bottom: -50px;
+        }
+        
+        @keyframes floatHeart {
+            0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+        
+        .gif-container {
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 0 40px #ff00cc,
+                        0 0 80px #ff1493;
+            border: 6px solid #ff69b4;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: #ff69b4;
+            text-shadow: 0 0 20px #ff00cc;
+        }
+        
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            z-index: 50;
+            padding: 10px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease;
-            z-index: 10;
-        }
-
-        .page.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.2rem;
-            margin-bottom: 20px;
-            color: #ffccdd;
-            text-shadow: 0 0 15px #ff69b4;
-        }
-
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            line-height: 1.5;
-            max-width: 85%;
-            color: #f5e1e9;
-        }
-
-        .gif-container {
-            width: 200px;
-            height: 200px;
-            margin-bottom: 25px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid #ff99cc;
-            box-shadow: 0 0 20px rgba(255,105,180,0.3);
-        }
-
-        .gif-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #ff6699, #ff3366);
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            font-size: 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            margin: 8px;
-            transition: transform 0.2s;
-            box-shadow: 0 5px 15px rgba(255,51,102,0.3);
-        }
-
-        .btn:active { transform: scale(0.95); }
-
-        .btn.no-btn {
-            background: linear-gradient(135deg, #6c757d, #495057);
-        }
-
-        #yes-container {
-            width: 100%;
-            max-height: 40vh;
-            overflow-y: auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            padding: 10px;
-        }
-
-        /* Optimized Animations */
-        #bg-container {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .heart, .star, .petal {
-            position: absolute;
-            will-change: transform;
-        }
-
-        .heart {
-            bottom: -50px;
-            animation: rise linear infinite;
-        }
-
-        @keyframes rise {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-        }
-
-        .star {
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 2s infinite alternate;
-        }
-
-        @keyframes twinkle {
-            from { opacity: 0.3; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1.2); }
+            gap: 8px;
+            font-size: 16px;
+            font-weight: bold;
         }
     </style>
 </head>
-<body>
+<body class="text-white">
 
-    <div class="instagram-handle">Follow on Insta: @smss1708 💗</div>
-    <div class="top-handle">Made for Kavya 🌸</div>
-
-    <audio id="bg-music" loop>
+    <audio id="bgMusic" loop>
         <source src="tere-liye.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="bg-container"></div>
-
-    <div class="page active" id="page-1">
-        <h1>Hi Kavya! ✨</h1>
-        <p>Hi Kavya i have something for you🥰...</p>
-        <button class="btn" onclick="nextPage(1)">Click Here</button>
+    <div class="top-bar">
+        <span class="text-2xl">💗</span>
+        <a href="https://www.instagram.com/smss1708" target="_blank" 
+           class="hover:text-pink-300 transition-colors flex items-center gap-2">
+            Follow @smss1708 💕
+        </a>
     </div>
 
-    <div class="page" id="page-2">
-        <div class="gif-container">
-            <img src="flower1.gif" alt="Flower 1">
-        </div>
-        <p>It was really nice meeting you today! 🌸</p>
-        <button class="btn" onclick="nextPage(2)">Next</button>
-    </div>
+    <div id="hearts-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></div>
 
-    <div class="page" id="page-3">
-        <div class="gif-container">
-            <img src="flower2.gif" alt="Flower 2">
-        </div>
-        <p>I hope your day was as awesome as your vibe. 🌷</p>
-        <button class="btn" onclick="nextPage(3)">One more</button>
-    </div>
-
-    <div class="page" id="page-4">
-        <div class="gif-container">
-            <img src="flower3.gif" alt="Flower 3">
-        </div>
-        <h1>Kavya ab se ham frnds?</h1>
-        <div id="yes-container">
-            <button class="btn" id="yes-main" onclick="sayYes()">Yes 😊</button>
-            <button class="btn no-btn" id="no-btn" onclick="noThanks()">No 😔</button>
+    <div id="slide1" class="slide active bg-gradient-to-b from-purple-950 to-black relative z-20">
+        <div class="text-center px-6 max-w-md">
+            <img src="gif1.gif" class="gif-container w-72 h-72 mx-auto mb-8 object-cover" alt="Cute GIF 1">
+            <h1 class="text-5xl neon-text mb-4" style="font-family: 'Dancing Script', cursive;">Hey Beautiful... ✨</h1>
+            <p class="text-2xl mb-10 leading-relaxed text-gray-200">Do you know you have the most magical smile?</p>
+            <div onclick="startExperience()" 
+                 class="glow-button cursor-pointer bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xl font-bold py-4 px-12 rounded-full mx-auto inline-block">
+                Let's Check 😍
+            </div>
+            <div class="mt-12 signature">With love,<br>Sivasingh 💗</div>
         </div>
     </div>
 
-    <div class="page" id="page-5">
-        <h1>nice to meet you Kavya have a nice day</h1>
-        <p>🌙✨</p>
+    <div id="slide2" class="slide bg-gradient-to-b from-purple-950 to-black relative z-20">
+        <div class="text-center px-6 max-w-md">
+            <img src="gif2.gif" class="gif-container w-72 h-72 mx-auto mb-8 object-cover" alt="Cute GIF 2">
+            <h1 class="text-4xl neon-text mb-6 leading-tight">Jab se tum mili ho...</h1>
+            <p class="text-2xl leading-relaxed text-gray-200">Sab kuch kitna pyara aur alag lagne laga hai.</p>
+            <div onclick="nextSlide()" 
+                 class="glow-button cursor-pointer mt-10 bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xl font-bold py-4 px-12 rounded-full mx-auto inline-block">
+                Next 💖
+            </div>
+            <div class="mt-12 signature">Sivasingh 💗</div>
+        </div>
+    </div>
+
+    <div id="slide3" class="slide bg-gradient-to-b from-purple-950 to-black relative z-20">
+        <div class="text-center px-6 max-w-md">
+            <img src="gif3.gif" class="gif-container w-72 h-72 mx-auto mb-8 object-cover" alt="Cute GIF 3">
+            <h1 class="text-5xl neon-text mb-8" style="font-family: 'Dancing Script', cursive;">I have something special...</h1>
+            <div onclick="nextSlide()" 
+                 class="glow-button cursor-pointer bg-gradient-to-r from-pink-400 to-purple-500 w-64 h-20 rounded-full mx-auto flex items-center justify-center text-2xl font-bold">
+                Tap to open 💌
+            </div>
+            <div class="mt-12 signature">Sivasingh 💗</div>
+        </div>
+    </div>
+
+    <div id="slide4" class="slide bg-gradient-to-b from-purple-950 to-black relative z-20">
+        <div class="text-center px-6 max-w-md">
+            <img src="gif4.gif" class="gif-container w-72 h-72 mx-auto mb-8 object-cover" alt="Cute GIF 4">
+            <h1 class="text-4xl neon-text mb-6">Meri har din ki khushi ❤️</h1>
+            <p class="text-2xl leading-relaxed text-gray-200">Tum meri subah ki pehli soch aur raat ka aakhri khayaal ban chuki ho.</p>
+            <div onclick="nextSlide()" 
+                 class="glow-button cursor-pointer bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xl font-bold py-4 px-12 rounded-full mx-auto inline-block mt-8">
+                Aage Dekho ✨
+            </div>
+        </div>
+    </div>
+
+    <div id="slide5" class="slide bg-gradient-to-b from-purple-950 to-black relative z-20">
+        <div class="text-center px-6 max-w-md">
+            <img src="gif5.gif" class="gif-container w-72 h-72 mx-auto mb-8 object-cover" alt="Cute GIF 5">
+            <h1 class="text-4xl neon-text mb-6">I know we recently met...</h1>
+            <p class="text-2xl leading-relaxed text-gray-200">But my heart already knows that it wants to be with you.</p>
+            <div onclick="nextSlide()" 
+                 class="glow-button cursor-pointer bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xl font-bold py-4 px-12 rounded-full mx-auto inline-block mt-8">
+                Next 💕
+            </div>
+        </div>
+    </div>
+
+    <div id="slide6" class="slide bg-gradient-to-b from-purple-950 to-black relative z-20">
+        <div class="text-center px-6 max-w-md">
+            <img src="gif6.gif" class="gif-container w-72 h-72 mx-auto mb-8 object-cover" alt="Cute GIF 6">
+            <h1 class="text-4xl neon-text mb-6">You make me feel complete ✨</h1>
+            <p class="text-2xl leading-relaxed text-gray-200">Main chahta hu yeh smile tumhare face pe hamesha rahe.</p>
+            <div onclick="nextSlide()" 
+                 class="glow-button cursor-pointer bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xl font-bold py-4 px-12 rounded-full mx-auto inline-block mt-8">
+                One Last Thing... 🥺
+            </div>
+        </div>
+    </div>
+
+    <div id="slide7" class="slide bg-[#1a001f] relative z-20">
+        <div class="text-center px-6 max-w-md relative z-20">
+            <img src="gif7.gif" class="mx-auto mb-8 w-48 h-48 rounded-full border-4 border-pink-400 shadow-[0_0_30px_#ff69b4] object-cover" alt="Cute Cat GIF 7">
+            
+            <h1 class="text-5xl neon-text mb-10 leading-tight" style="font-family: 'Dancing Script', cursive;">
+                Will you be my Girlfriend? 🥺❤️
+            </h1>
+            
+            <div class="flex flex-col items-center gap-6">
+                <button onclick="sayYes()" 
+                        id="yesBtn"
+                        class="glow-button bg-gradient-to-r from-red-600 to-rose-500 text-white text-3xl font-bold py-5 px-16 rounded-full shadow-2xl transition-all duration-300">
+                    YES! 💍❤️
+                </button>
+                
+                <button onclick="clickNo()" 
+                        id="noBtn"
+                        class="bg-gray-700 hover:bg-gray-600 text-white text-xl font-bold py-3 px-10 rounded-full transition-all duration-300">
+                    No 🙈
+                </button>
+            </div>
+            
+            <div class="mt-16 signature text-2xl">Only yours,<br>Sivasingh 💗</div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-50">
+        <div id="progress" class="flex gap-2"></div>
     </div>
 
     <script>
-        const bgMusic = document.getElementById('bg-music');
-        const yesContainer = document.getElementById('yes-container');
-        let yesButtonsCount = 1;
+        let currentSlide = 1;
+        const totalSlides = 7;
+        let bgMusic = document.getElementById("bgMusic");
 
-        function nextPage(current) {
-            if (current === 1) {
-                bgMusic.play().catch(() => console.log("Audio play blocked"));
+        // Start music on first click
+        function startExperience() {
+            bgMusic.play().catch(e => console.log("Audio autoplay prevented by browser"));
+            nextSlide();
+        }
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(slide => slide.classList.remove('active'));
+            document.getElementById('slide' + n).classList.add('active');
+            updateProgress();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                showSlide(currentSlide);
             }
-            document.getElementById(`page-${current}`).classList.remove('active');
+        }
+
+        function updateProgress() {
+            let html = '';
+            for (let i = 1; i <= totalSlides; i++) {
+                html += `<div class="w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === currentSlide ? 'bg-pink-400 scale-150' : 'bg-white/30'}"></div>`;
+            }
+            document.getElementById('progress').innerHTML = html;
+        }
+
+        // OPTIMIZED: Lag-Free Floating Hearts
+        function createHeart() {
+            const container = document.getElementById('hearts-container');
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            
+            // Randomly pick a cute emoji
+            const emojis = ['💗', '❤️', '💕', '💖', '✨'];
+            heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            // Random horizontal position
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Random animation speed (4s to 8s)
+            const duration = Math.random() * 4 + 4;
+            heart.style.animationDuration = duration + 's';
+            
+            // Random size variation
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            
+            container.appendChild(heart);
+            
+            // Remove heart from DOM after animation completes to prevent lag
             setTimeout(() => {
-                document.getElementById(`page-${current + 1}`).classList.add('active');
-            }, 300);
+                heart.remove();
+            }, duration * 1000);
         }
 
+        // Spawn only 1 heart every 400ms (Keeps phone memory clear!)
+        setInterval(createHeart, 400);
+
+        // Proposal special functions
         function sayYes() {
-            document.getElementById('page-4').classList.remove('active');
-            setTimeout(() => document.getElementById('page-5').classList.add('active'), 300);
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            
+            yesBtn.innerHTML = `I KNEW IT! 😍❤️`;
+            yesBtn.classList.add('scale-125', 'shadow-[0_0_60px_#ff00cc]');
+            yesBtn.style.pointerEvents = 'none';
+            noBtn.style.display = 'none';
+            
+            setTimeout(() => {
+                alert("💗 THANK YOU FOR SAYING YES! 💗\n\nYou just made me the happiest guy in the world!\n\n- Yours, Sivasingh");
+            }, 800);
         }
 
-        function noThanks() {
-            // Fix: Add buttons incrementally to prevent lag
-            for (let i = 0; i < 5; i++) {
-                const y = document.createElement('button');
-                y.className = 'btn';
-                y.textContent = 'Yes 😊';
-                y.onclick = sayYes;
-                yesContainer.insertBefore(y, document.getElementById('no-btn'));
+        let noClickCount = 0;
+        function clickNo() {
+            noClickCount++;
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            
+            // "Yes" button keeps growing
+            const scale = 1 + (noClickCount * 0.3);
+            yesBtn.style.transform = `scale(${scale})`;
+            yesBtn.style.margin = `${noClickCount * 10}px 0`;
+            yesBtn.style.boxShadow = '0 0 50px #ff00cc';
+            
+            // Funny messages inside "No" button
+            const noMessages = [
+                "Are you sure? 🥺",
+                "Think again! 😢",
+                "Last chance... 💔",
+                "You can't do this to me! 😭",
+                "Okay, I'm hiding this button now!"
+            ];
+            
+            if (noClickCount < 5) {
+                noBtn.innerText = noMessages[noClickCount - 1];
+            } else {
+                noBtn.style.display = "none"; // Forces her to click YES after 5 tries
             }
         }
 
-        function createBackground() {
-            const container = document.getElementById('bg-container');
-            const icons = ['💖','✨','🌸'];
-
-            // Optimized: Create fewer, higher quality elements
-            for (let i = 0; i < 15; i++) {
-                const h = document.createElement('div');
-                h.className = 'heart';
-                h.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-                h.style.left = Math.random() * 90 + 'vw';
-                h.style.fontSize = (Math.random() * 15 + 15) + 'px';
-                h.style.animationDuration = (Math.random() * 5 + 5) + 's';
-                h.style.animationDelay = (Math.random() * 5) + 's';
-                container.appendChild(h);
-            }
-
-            for (let i = 0; i < 20; i++) {
-                const s = document.createElement('div');
-                s.className = 'star';
-                const size = Math.random() * 3 + 1;
-                s.style.width = size + 'px';
-                s.style.height = size + 'px';
-                s.style.left = Math.random() * 100 + 'vw';
-                s.style.top = Math.random() * 100 + 'vh';
-                s.style.animationDelay = (Math.random() * 2) + 's';
-                container.appendChild(s);
-            }
-        }
-        
-        window.onload = createBackground;
+        // Initialize progress
+        window.onload = function() {
+            showSlide(1);
+            updateProgress();
+        };
     </script>
 </body>
 </html>

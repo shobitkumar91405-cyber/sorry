@@ -1,317 +1,284 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Surprise For You ✨</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>For My Cutee ❤️</title>
     <style>
         :root {
-            --primary-pink: #ff758f;
-            --secondary-pink: #ffafbd;
-            --soft-white: #fff5f6;
-            --glass-bg: rgba(255, 255, 255, 0.25);
-            --glass-border: rgba(255, 255, 255, 0.5);
+            --pink-glow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
+            --main-pink: #ff69b4;
+            --soft-pink: #fff0f5;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        body {
-            font-family: 'Poppins', sans-serif;
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Georgia', serif;
+            background-color: #ffffff;
+            color: #333;
             overflow: hidden;
-            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
+            scroll-behavior: smooth;
+        }
+
+        /* Top Banner */
+        .top-banner {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 1000;
+            font-weight: bold;
+            text-shadow: var(--pink-glow);
+            color: var(--main-pink);
+            border-bottom: 1px solid var(--soft-pink);
+        }
+
+        /* Full Screen Sections */
+        section {
+            width: 100%;
             height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            background: radial-gradient(circle, #ffffff 0%, #fff5f8 100%);
+            display: none; /* Hidden by default for logic */
+        }
+
+        section.active {
+            display: flex;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glowing-text {
+            font-size: 1.5rem;
+            color: #ff1493;
+            text-shadow: var(--pink-glow);
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        /* Buttons */
+        .btn-continue {
+            margin-top: 30px;
+            padding: 12px 35px;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-continue:hover {
+            transform: scale(1.05);
+            box-shadow: var(--pink-glow);
+        }
+
+        /* Specific styles for Shairi dots */
+        .shairi-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dot-line {
+            width: 2px;
+            height: 40px;
+            background: var(--main-pink);
+            box-shadow: var(--pink-glow);
+            margin: 5px 0;
+        }
+
+        /* Scratch Card */
+        #scratch-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            border: 2px solid var(--soft-pink);
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        .revealed-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #5d2e46;
+            z-index: 1;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .insta-header {
-            position: fixed;
-            top: 15px;
-            z-index: 1000;
-            background: var(--glass-bg);
-            backdrop-filter: blur(8px);
-            padding: 8px 18px;
-            border-radius: 50px;
-            border: 1px solid var(--glass-border);
-            font-size: 0.85rem;
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .insta-header a { color: #fff; text-decoration: none; font-weight: 600; }
-
-        .app-container { position: relative; z-index: 10; width: 90%; max-width: 420px; height: 85vh; perspective: 1200px; }
-
-        .page {
-            position: absolute; width: 100%; height: 100%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 25px;
-            padding: 25px;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(255, 117, 143, 0.2);
-            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .page.active { display: flex; animation: pageIn 0.6s ease-out; }
-
-        @keyframes pageIn {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        h1 { font-family: 'Dancing Script', cursive; font-size: 2.1rem; color: #ff4d6d; margin-bottom: 15px; }
-        p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px; color: #5d2e46; }
-
-        .btn {
-            background: #ff4d6d; color: white; border: none; padding: 12px 28px;
-            border-radius: 50px; font-weight: 600; cursor: pointer;
-            transition: 0.3s; box-shadow: 0 4px 12px rgba(255, 77, 109, 0.3);
-            margin: 8px;
-        }
-        .btn:hover { transform: scale(1.05); background: #ff758f; }
-
-        .img-frame {
-            width: 160px; height: 160px; border-radius: 50%;
-            border: 4px solid #fff; overflow: hidden; margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1); animation: pulse 4s infinite;
-        }
-
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
-        .img-frame img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* Progress Bar */
-        .meter-container { width: 100%; background: rgba(255,255,255,0.4); border-radius: 10px; height: 12px; margin: 20px 0; overflow: hidden; }
-        .meter-bar { width: 0%; height: 100%; background: #ff4d6d; transition: width 0.1s; }
-
-        /* Grid */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
-        .grid-item { background: #fff; padding: 15px; border-radius: 15px; font-size: 1.4rem; cursor: pointer; transition: 0.2s; }
-        .grid-item:hover { background: #fff0f3; transform: translateY(-3px); }
-
-        /* Gallery */
-        .scroll-box { display: flex; overflow-x: auto; gap: 10px; width: 100%; padding: 10px 0; scrollbar-width: none; }
-        .scroll-box::-webkit-scrollbar { display: none; }
-        .scroll-item { min-width: 180px; height: 220px; border-radius: 15px; overflow: hidden; border: 2px solid white; }
-        .scroll-item img { width: 100%; height: 100%; object-fit: cover; }
-
-        .no-btn { position: absolute; white-space: nowrap; }
-
-        /* Modal */
-        .modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4); z-index: 2000; display: none;
-            justify-content: center; align-items: center; backdrop-filter: blur(4px);
-        }
-        .modal-content { background: #fff; padding: 25px; border-radius: 20px; width: 85%; max-width: 320px; text-align: center; }
-        .modal.active { display: flex; }
-
-        /* Hearts */
-        .heart { position: fixed; pointer-events: none; z-index: 999; animation: floatUp 1.5s ease-out forwards; }
-        @keyframes floatUp {
-            0% { transform: translate(0,0) scale(1); opacity: 1; }
-            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
-        }
+        .intro-gif { width: 250px; border-radius: 20px; }
     </style>
 </head>
 <body>
 
-    <header class="insta-header">
-        By <a href="https://www.instagram.com/smss1708?igsh=aGcwcjhmdWpjd2w2" target="_blank">@smss1708</a>
-    </header>
+    <div class="top-banner">follow on insta - @smss1708</div>
 
-    <div id="petals-container"></div>
-    <audio id="bgMusic" src="tere-liye.mp3" loop></audio>
+    <audio id="bgMusic" loop>
+        <source src="tere-liye.mp3" type="audio/mpeg">
+    </audio>
 
-    <div class="app-container">
-        <div class="page active" id="page1">
-            <div class="img-frame"><img src="photo1.jpg" alt="You"></div>
-            <h1>Hey Cutiee... ✨</h1>
-            <p>I made something small just to see a smile on your face today. Ready to see?</p>
-            <button class="btn" onclick="startApp()">Yes, Show Me! ✨</button>
+    <section id="p1" class="active">
+        <img src="intro.gif" class="intro-gif" alt="Cute GIF">
+        <p class="glowing-text">Loading love...</p>
+    </section>
+
+    <section id="p2">
+        <h1 class="glowing-text">Hii cutee,<br>I want to say something...</h1>
+        <button class="btn-continue" onclick="nextPage(2, 3)">Continue ❤️</button>
+    </section>
+
+    <section id="p3">
+        <div class="shairi-container">
+            <p class="glowing-text">Tum bologi dhimi aavaz me</p>
+            <div class="dot-line"></div>
+            <p class="glowing-text">fir bhi bat pakad lunga</p>
+            <div class="dot-line"></div>
+            <p class="glowing-text">gale nhi lagaunga tumko</p>
+            <div class="dot-line"></div>
+            <p class="glowing-text">bus hath pakad lunga</p>
         </div>
+        <button class="btn-continue" onclick="nextPage(3, 4)">Continue ❤️</button>
+    </section>
 
-        <div class="page" id="page2">
-            <h1>You're One of a Kind 🌟</h1>
-            <p>In a world full of regular vibes, yours is just... different. The good kind of different that makes everything better.</p>
-            <button class="btn" onclick="nextPage(3)">What Else? ✨</button>
+    <section id="p4">
+        <div class="shairi-container">
+            <p class="glowing-text">aur is thodi si mohabbat ki aag me</p>
+            <div class="dot-line"></div>
+            <p class="glowing-text">jindgi bhar jana hai</p>
         </div>
+        <button class="btn-continue" onclick="nextPage(4, 5)">Continue ❤️</button>
+    </section>
 
-        <div class="page" id="page3">
-            <h1>Vibe Check in Progress...</h1>
-            <div class="meter-container"><div class="meter-bar" id="meterBar"></div></div>
-            <p id="meterText">Analyzing your cuteness...</p>
-            <button class="btn" id="meterBtn" style="display:none;" onclick="nextPage(4)">Result: 100% Bestie Plus! ♾️</button>
+    <section id="p5">
+        <div class="shairi-container">
+            <p class="glowing-text">hotel me nhi jana mujhko</p>
+            <div class="dot-line"></div>
+            <p class="glowing-text">sadak pe sath chalna hai</p>
         </div>
+        <button class="btn-continue" onclick="nextPage(5, 6)">Continue ❤️</button>
+    </section>
 
-        <div class="page" id="page4">
-            <h1>My Mini Promises 🤝</h1>
-            <div class="grid">
-                <div class="grid-item" onclick="openModal('🍕', 'I promise to always suggest the best food when you\'re confused!')">🍕</div>
-                <div class="grid-item" onclick="openModal('🎧', 'I promise to share the best playlists that match your mood.')">🎧</div>
-                <div class="grid-item" onclick="openModal('🌟', 'I promise to always be there when you need a listening ear.')">🌟</div>
-                <div class="grid-item" onclick="openModal('🌈', 'I promise to never let a day go by without making you laugh.')">🌈</div>
+    <section id="p6">
+        <div class="shairi-container">
+            <p class="glowing-text">fir bhi is duniya se nikal ke</p>
+            <p class="glowing-text">mujhme kho sakti ho kya</p>
+            <p class="glowing-text">jyada ki chah nhi mujhko</p>
+            <p class="glowing-text">thodi di meri ho sakti ho kya 💯</p>
+        </div>
+        <button class="btn-continue" onclick="nextPage(6, 7)">Continue ❤️</button>
+    </section>
+
+    <section id="p7">
+        <h2 class="glowing-text">Reasons Why I Love You ✨</h2>
+        <p class="glowing-text" style="font-size: 1.1rem;">Because every little thing about you feels like home</p>
+        <div style="background: var(--soft-pink); padding: 15px; border-radius: 15px; margin: 5px;">You read my silence.</div>
+        <div style="background: var(--soft-pink); padding: 15px; border-radius: 15px; margin: 5px;">You stand with me.</div>
+        <button class="btn-continue" onclick="nextPage(7, 8)">Continue ❤️</button>
+    </section>
+
+    <section id="p8">
+        <h2 class="glowing-text">Love Compatibility Test</h2>
+        <div style="font-size: 3rem; font-weight: bold; color: var(--main-pink); text-shadow: var(--pink-glow);">100%</div>
+        <p class="glowing-text">Perfect Match 💖 Our hearts beat as one.</p>
+        <button class="btn-continue" onclick="nextPage(8, 9)">Continue ❤️</button>
+    </section>
+
+    <section id="p9">
+        <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.05);">
+            <span style="font-size: 3rem;">🌙</span>
+            <p class="glowing-text">I promise to be your peace when life feels too loud.</p>
+        </div>
+        <button class="btn-continue" onclick="nextPage(9, 10)">Close 💗</button>
+    </section>
+
+    <section id="p10">
+        <h2 class="glowing-text">A Little Surprise</h2>
+        <p>Scratch gently...</p>
+        <div id="scratch-container">
+            <div class="revealed-content">
+                <p class="glowing-text">I Love You Forever! ❤️</p>
             </div>
-            <p style="margin-top:15px;">Click to see my "bestie-level" promises!</p>
-            <button class="btn" onclick="nextPage(5)">Next →</button>
+            <canvas id="scratchCanvas" width="300" height="200"></canvas>
         </div>
-
-        <div class="page" id="page5">
-            <h1>Why You're Special 💖</h1>
-            <p>"Life is better with friends who feel like sunshine." — That's exactly how you feel to me.</p>
-            <div style="display:flex; gap:10px; justify-content:center;">
-                <div style="background:white; padding:5px; transform:rotate(-3deg);"><img src="photo2.jpg" width="120"></div>
-                <div style="background:white; padding:5px; transform:rotate(3deg);"><img src="photo3.jpg" width="120"></div>
-            </div>
-            <button class="btn" style="margin-top:20px;" onclick="nextPage(6)">Memories ✨</button>
-        </div>
-
-        <div class="page" id="page6">
-            <h1>Aesthetic Moments</h1>
-            <div class="scroll-box">
-                <div class="scroll-item"><img src="photo4.jpg"></div>
-                <div class="scroll-item"><img src="photo5.jpg"></div>
-                <div class="scroll-item"><img src="photo6.jpg"></div>
-            </div>
-            <p>Just some of my favorite vibes of yours!</p>
-            <button class="btn" onclick="nextPage(7)">Moving On...</button>
-        </div>
-
-        <div class="page" id="page7">
-            <h1>The Magic in You ✨</h1>
-            <p>Don't ever change. The way you handle things and that smile of yours... it's pure magic.</p>
-            <div class="img-frame" style="width:100px; height:100px;"><img src="photo7.jpg"></div>
-            <button class="btn" onclick="nextPage(8)">One Last Thing...</button>
-        </div>
-
-        <div class="page" id="page8">
-            <h1>A Simple Question...</h1>
-            <h2 style="font-family:'Poppins'; font-size:1.3rem;">Can we keep being this close forever? 🌸</h2>
-            <div style="margin-top:40px; position:relative; width:100%; height:120px;">
-                <button class="btn" onclick="nextPage(9)">Of Course! 🤗</button>
-                <button class="btn no-btn" id="noBtn" onmouseover="moveBtn()">Nah... 😜</button>
-            </div>
-        </div>
-
-        <div class="page" id="page9">
-            <h1>Yay! You're The Best! 🥳</h1>
-            <p>Thank you for being you. You've officially made my day by reaching here!</p>
-            <div style="display:flex; justify-content:center; gap:8px; margin-bottom:15px;">
-                <img src="photo8.jpg" width="60" style="border-radius:50%">
-                <img src="photo9.jpg" width="60" style="border-radius:50%">
-                <img src="photo10.jpg" width="60" style="border-radius:50%">
-            </div>
-            <h2 style="font-size:1.5rem;">Stay Happy, Stay You! ✨</h2>
-            <p style="font-size:0.8rem; opacity:0.7;">Made with ✨ by Sivasingh (@smss1708)</p>
-        </div>
-    </div>
-
-    <div class="modal" id="pModal" onclick="closeModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <h1 id="mEmoji"></h1>
-            <p id="mText"></p>
-            <button class="btn" onclick="closeModal()">Sweet! 😊</button>
-        </div>
-    </div>
+    </section>
 
     <script>
-        function startApp() {
-            const music = document.getElementById('bgMusic');
-            music.volume = 0.2;
-            music.play().catch(() => {});
-            nextPage(2);
-        }
-
-        function nextPage(n) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('page' + n).classList.add('active');
-            popHearts();
-            if(n === 3) runMeter();
-        }
-
-        function runMeter() {
-            let bar = document.getElementById('meterBar');
-            let txt = document.getElementById('meterText');
-            let btn = document.getElementById('meterBtn');
-            let w = 0;
-            let phrases = ["Checking vibes...", "Loading cuteness...", "Testing patience...", "Vibe Matched! ✨"];
-            let interval = setInterval(() => {
-                if(w >= 100) {
-                    clearInterval(interval);
-                    btn.style.display = "inline-block";
-                    txt.innerText = phrases[3];
-                } else {
-                    w += 2;
-                    bar.style.width = w + "%";
-                    if(w < 30) txt.innerText = phrases[0];
-                    else if(w < 60) txt.innerText = phrases[1];
-                    else if(w < 90) txt.innerText = phrases[2];
-                }
-            }, 60);
-        }
-
-        function openModal(e, t) {
-            document.getElementById('mEmoji').innerText = e;
-            document.getElementById('mText').innerText = t;
-            document.getElementById('pModal').classList.add('active');
-            popHearts();
-        }
-
-        function closeModal() { document.getElementById('pModal').classList.remove('active'); }
-
-        function moveBtn() {
-            const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - 140) - (window.innerWidth/2 - 70);
-            const y = Math.random() * (window.innerHeight - 140) - (window.innerHeight/2 - 70);
-            btn.style.transform = `translate(${x}px, ${y}px)`;
-        }
-
-        function popHearts() {
-            for(let i=0; i<10; i++) {
-                const h = document.createElement('div');
-                h.className = 'heart';
-                h.innerHTML = ['✨','🌸','💖','🍬'][Math.floor(Math.random()*4)];
-                h.style.left = Math.random() * 100 + 'vw';
-                h.style.top = Math.random() * 100 + 'vh';
-                h.style.setProperty('--tx', (Math.random()-0.5)*200 + 'px');
-                h.style.setProperty('--ty', (Math.random()-0.5)*200 + 'px');
-                document.body.appendChild(h);
-                setTimeout(() => h.remove(), 1500);
+        // Page Navigation
+        function nextPage(current, next) {
+            document.getElementById('p' + current).classList.remove('active');
+            document.getElementById('p' + next).classList.add('active');
+            
+            // Start Music on first click
+            let music = document.getElementById('bgMusic');
+            if (music.paused) {
+                music.play().catch(e => console.log("Audio play blocked by browser"));
             }
+
+            if(next === 10) initScratch();
         }
 
-        setInterval(() => {
-            const p = document.createElement('div');
-            p.innerHTML = '🌸';
-            p.style.position = 'fixed';
-            p.style.top = '-20px';
-            p.style.left = Math.random() * 100 + 'vw';
-            p.style.fontSize = '15px';
-            p.style.zIndex = '1';
-            p.style.transition = 'all 6s linear';
-            document.body.appendChild(p);
-            setTimeout(() => {
-                p.style.top = '105vh';
-                p.style.transform = `translateX(${Math.random()*100-50}px) rotate(360deg)`;
-            }, 100);
-            setTimeout(() => p.remove(), 6000);
-        }, 600);
+        // Auto transition for Page 1
+        setTimeout(() => {
+            nextPage(1, 2);
+        }, 4000);
+
+        // Scratch Card Logic
+        function initScratch() {
+            const canvas = document.getElementById('scratchCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#ffc0cb';
+            ctx.fillRect(0, 0, 300, 200);
+            ctx.fillStyle = '#ff69b4';
+            ctx.font = "20px Arial";
+            ctx.fillText("Scratch Me ❤️", 80, 100);
+
+            let isDrawing = false;
+
+            function scratch(e) {
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                const y = (e.clientY || e.touches[0].clientY) - rect.top;
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 20, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            canvas.addEventListener('mousedown', () => isDrawing = true);
+            canvas.addEventListener('touchstart', () => isDrawing = true);
+            window.addEventListener('mouseup', () => isDrawing = false);
+            window.addEventListener('touchend', () => isDrawing = false);
+            canvas.addEventListener('mousemove', scratch);
+            canvas.addEventListener('touchmove', scratch);
+        }
     </script>
 </body>
 </html>

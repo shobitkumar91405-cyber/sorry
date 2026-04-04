@@ -3,288 +3,461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Lucas! 🎂</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>For My Cutee ❤️</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Bangers&display=swap');
-        
-        body, html {
-            margin: 0; padding: 0;
-            overflow: hidden;
-            background: #f8fafc; /* Premium Light Background */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap');
+
+        :root {
+            --pink: #ff85a2;
+            --soft-pink: #ffb6c1;
+            --white: #ffffff;
+            --glow: 0 0 10px rgba(255, 133, 162, 0.6);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
             font-family: 'Poppins', sans-serif;
-            touch-action: none;
-            color: #1e293b;
-        }
-        
-        .premium-font { font-family: 'Bangers', system-ui; letter-spacing: 2px; }
-        
-        .section {
-            position: absolute; inset: 0;
-            display: none; opacity: 0;
-            align-items: center; justify-content: center; flex-direction: column;
-            padding: 20px; width: 100vw; height: 100vh;
-        }
-
-        .section.active { display: flex; opacity: 1; }
-
-        /* Glowing Text Effect */
-        .ultra-glow {
-            color: #1e3a8a;
-            text-shadow: 0 0 10px rgba(59, 130, 246, 0.4), 0 0 20px rgba(59, 130, 246, 0.2);
-            filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.3));
-        }
-
-        .glass-premium {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 2px solid #e2e8f0;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .intro-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #3b82f6;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
-            50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(59, 130, 246, 0.8); }
-            100% { transform: scale(1); box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
-        }
-
-        #scratch-container {
+            background: linear-gradient(135deg, #ffffff 0%, #ffe4e8 100%);
+            height: 100vh;
+            overflow: hidden;
+            color: #444;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
+        }
+
+        /* Floating Hearts Background */
+        .bg-hearts {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart-float {
+            position: absolute;
+            color: var(--soft-pink);
+            opacity: 0.6;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) scale(0); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        /* Music Control */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 15px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .top-bar a {
+            color: var(--pink);
+            text-decoration: none;
+            font-weight: 600;
+            text-shadow: var(--glow);
+        }
+
+        /* Container & Pages */
+        .container {
+            width: 90%;
+            max-width: 400px;
+            height: 80vh;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--pink);
+            margin-bottom: 20px;
+            text-shadow: var(--glow);
+        }
+
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .glow-text {
+            color: var(--pink);
+            text-shadow: 0 0 8px rgba(255, 133, 162, 0.4);
+        }
+
+        /* Buttons */
+        .btn {
+            background: var(--pink);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 133, 162, 0.4);
+        }
+
+        .btn:hover { transform: scale(1.05); background: #ff6b8d; }
+
+        /* Shayari Box */
+        .shayari-container {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 320px;
+        }
+
+        .shayari-line {
+            display: block;
+            margin: 10px 0;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: 0.5s;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        .shayari-line.visible { opacity: 1; transform: translateX(0); }
+
+        /* Gauge */
+        .gauge-wrap { margin: 20px 0; position: relative; }
+        .meter {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            border: 8px solid #f0f0f0;
+            border-top: 8px solid var(--pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--pink);
+            animation: spin 2s infinite linear;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Final Buttons */
+        .choice-btns { display: flex; gap: 20px; margin-top: 30px; position: relative; width: 100%; justify-content: center; z-index: 10; }
+        #noBtn { position: absolute; transition: 0.3s ease; }
+
+        /* Scratch Card Overlay */
+        #scratch-page {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 1s;
+        }
+
+        .scratch-container {
             width: 300px;
             height: 150px;
-            margin: 0 auto;
-            user-select: none;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
         }
+
         #scratch-canvas {
             position: absolute;
             top: 0; left: 0;
+            cursor: crosshair;
             z-index: 2;
-            border-radius: 15px;
         }
+
         .scratch-content {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
+            background: white;
             display: flex;
-            align-items: center;
             justify-content: center;
-            background: #3b82f6;
-            color: #fff;
-            font-size: 24px;
-            font-weight: 800;
-            border-radius: 15px;
+            align-items: center;
             z-index: 1;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .balloon {
-            width: 70px; height: 90px;
-            background: var(--balloon-color);
-            border-radius: 50% 50% 50% 50% / 45% 45% 55% 55%;
-            position: absolute;
-            box-shadow: inset -10px -10px 15px rgba(0,0,0,0.1);
-            animation: float 6s ease-in-out infinite alternate;
-        }
-        @keyframes float {
-            0% { transform: translateY(0) rotate(-5deg); }
-            100% { transform: translateY(-30px) rotate(5deg); }
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: var(--pink);
+            text-shadow: var(--glow);
         }
     </style>
 </head>
 <body>
 
-    <div class="fixed top-4 left-0 w-full text-center z-[100] text-blue-600/70 text-sm font-bold tracking-widest">
-        Follow on Insta 📷 - <span class="text-blue-900">@smss1708</span>
+    <div class="bg-hearts" id="hearts-bg"></div>
+
+    <div class="top-bar">
+        <a href="https://instagram.com/smss1708" target="_blank">Follow on Insta - @smss1708</a>
     </div>
 
-    <audio id="bgmusic" loop><source src="tere-liye.mp3" type="audio/mpeg"></audio>
+    <div class="music-control" onclick="toggleMusic()">
+        <span id="music-icon">🎵</span>
+    </div>
 
-    <section id="intro" class="section active">
-        <img src="photo1.jpg" alt="Lucas" class="intro-photo">
-        <div class="text-center z-20">
-            <h1 class="text-6xl md:text-8xl premium-font ultra-glow mb-4">HAPPY BIRTHDAY<br>LUCAS! ⚡</h1>
-            <p class="text-xl text-blue-600 font-semibold mb-10">Something special is waiting for you, bro...</p>
-            <button onclick="startExperience()" class="bg-blue-600 hover:bg-blue-700 text-white px-12 py-4 rounded-full text-xl font-black transition-all transform hover:scale-110 shadow-xl shadow-blue-200">
-                OPEN SURPRISE 🎁
-            </button>
+    <audio id="bgMusic" loop>
+        <source src="tere-liye.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <div class="page active" id="p1">
+            <img src="gif1.gif" alt="Cute GIF" style="width: 200px; border-radius: 20px; margin-bottom: 20px;">
+            <h1 class="typing">Hii Cutee 💖</h1>
+            <p class="message">I want to say something very special to you...</p>
+            <button class="btn" onclick="nextPage(2)">Continue ❤️</button>
         </div>
-    </section>
 
-    <section id="wishes" class="section">
-        <h2 class="text-5xl premium-font mb-10 text-center ultra-glow">WISHES FOR YOU ✉️</h2>
-        <div class="grid grid-cols-2 gap-4 w-full max-w-md">
-            <div class="glass-premium p-8 text-center cursor-pointer hover:scale-105 transition" onclick="openWish('Happy Birthday Lucas! May your year be filled with success and happiness bro! 🚀')">
-                <i class="fa-solid fa-crown text-3xl text-yellow-500 mb-2"></i>
-                <p class="font-bold text-blue-900">Wish 1</p>
+        <div class="page" id="p2"> <h1>Kab se kuch kehna tha...</h1> <button class="btn" onclick="nextPage(3)">Continue ❤️</button> </div>
+        <div class="page" id="p3"> <h1>Par shayad himmat nahi ho pa rahi thi...</h1> <button class="btn" onclick="nextPage(4)">Continue ❤️</button> </div>
+        <div class="page" id="p4"> <h1 class="glow-text">Tum sabse alag ho... ✨</h1> <button class="btn" onclick="nextPage(5)">Continue ❤️</button> </div>
+        <div class="page" id="p5"> <h1 class="glow-text">Bahut zyada special ho... 🌸</h1> <button class="btn" onclick="nextPage(6)">Continue ❤️</button> </div>
+        <div class="page" id="p6"> <h1>Aur shayad...</h1> <button class="btn" onclick="nextPage(7)">Continue ❤️</button> </div>
+        <div class="page" id="p7"> <h1 class="glow-text">Mujhe tum pasand ho 💖</h1> <button class="btn" onclick="nextPage(8)">Continue ❤️</button> </div>
+        <div class="page" id="p8"> <h2 class="glow-text">Bahut zyada... 🥀</h2> <button class="btn" onclick="nextPage(9)">Continue ❤️</button> </div>
+
+        <div class="page" id="p9">
+            <div class="shayari-container">
+                <span class="shayari-line">Tum bologi dhimi aavaz me</span>
+                <span class="shayari-line">fir bhi baat pakad lunga</span>
+                <span class="shayari-line">gale nahi lagaunga tumko</span>
+                <span class="shayari-line">bas haath pakad lunga...</span>
+                <br>
+                <span class="shayari-line">aur is thodi si mohabbat ki aag me</span>
+                <span class="shayari-line">zindagi bhar jalna hai</span>
+                <span class="shayari-line">hotel me nahi jana mujhko</span>
+                <span class="shayari-line">sadak pe saath chalna hai...</span>
+                <br>
+                <span class="shayari-line">fir bhi is duniya se nikal ke</span>
+                <span class="shayari-line">mujhme kho sakti ho kya?</span>
+                <span class="shayari-line">jyada ki chah nahi mujhko</span>
+                <span class="shayari-line">thodi si meri ho sakti ho kya 💯</span>
             </div>
-            <div class="glass-premium p-8 text-center cursor-pointer hover:scale-105 transition" onclick="openWish('Keep grinding and keep shining. You are a legend in the making! ✨')">
-                <i class="fa-solid fa-fire text-3xl text-orange-500 mb-2"></i>
-                <p class="font-bold text-blue-900">Wish 2</p>
+            <button class="btn" style="margin-top: 20px;" onclick="nextPage(10)">Continue ❤️</button>
+        </div>
+
+        <div class="page" id="p10">
+            <h1 id="meterTitle">Calculating love... 💖</h1>
+            <div class="gauge-wrap">
+                <div class="meter" id="loveMeter">0%</div>
             </div>
-            <div class="glass-premium p-8 text-center cursor-pointer hover:scale-105 transition" onclick="openWish('Stay blessed and stay humble. Party hard today because you deserve it! 🍻')">
-                <i class="fa-solid fa-cake-candles text-3xl text-pink-500 mb-2"></i>
-                <p class="font-bold text-blue-900">Wish 3</p>
+            <div id="meterResult" style="display:none;">
+                <h2 class="glow-text">100% Perfect Match 💞</h2>
+                <p>Our hearts beat as one</p>
+                <div style="font-size: 50px; margin-top: 10px;">🤗</div>
             </div>
-            <div class="glass-premium p-8 text-center cursor-pointer hover:scale-105 transition" onclick="openWish('Wishing you an amazing life ahead filled with adventures. Happy Birthday! 🎈')">
-                <i class="fa-solid fa-heart text-3xl text-red-500 mb-2"></i>
-                <p class="font-bold text-blue-900">Wish 4</p>
+            <button class="btn" id="meterBtn" onclick="runMeter()" style="margin-top: 20px;">Check Compatibility</button>
+        </div>
+
+        <div class="page" id="p11">
+            <h1 class="glow-text" style="font-size: 2.5rem;">Will you be mine? 💖</h1>
+            <div class="choice-btns">
+                <button class="btn" id="yesBtn" style="padding: 15px 50px; font-size: 1.2rem;" onclick="showScratchCard()">YES ❤️</button>
+                <button class="btn" id="noBtn" onmouseover="moveNo()" style="background: #ccc; box-shadow: none;">NO 💔</button>
             </div>
         </div>
-        <button id="btn-next" onclick="nextPage('balloons')" class="mt-10 bg-blue-600 text-white px-10 py-3 rounded-full font-bold hidden shadow-lg shadow-blue-200">NEXT STEP ➡️</button>
+    </div>
 
-        <div id="wish-modal" class="fixed inset-0 bg-white/90 hidden items-center justify-center z-[110] px-6">
-            <div class="glass-premium p-10 text-center max-w-sm w-full border-2 border-blue-500">
-                <p id="wish-text" class="text-2xl font-bold text-blue-900 italic mb-6"></p>
-                <button onclick="closeWish()" class="bg-blue-600 text-white px-8 py-2 rounded-lg font-bold">Close</button>
-            </div>
-        </div>
-    </section>
-
-    <section id="balloons" class="section">
-        <h2 class="text-5xl premium-font mb-4 text-center ultra-glow">POP THE VIBES! 🎈</h2>
-        <p class="mb-10 text-blue-500 font-medium">Tap to burst the balloons</p>
-        <div id="balloon-container" class="relative w-full h-[50vh] max-w-md"></div>
-        <button id="btn-scratch" onclick="nextPage('scratch-page')" class="mt-10 bg-yellow-400 text-blue-900 px-12 py-4 rounded-full font-black hidden animate-bounce shadow-lg">
-            FINAL SURPRISE 🪄
-        </button>
-    </section>
-
-    <section id="scratch-page" class="section">
-        <h2 class="text-4xl premium-font mb-8 text-center ultra-glow">SCRATCH TO REVEAL! 🕵️‍♂️</h2>
-        <div id="scratch-container" class="shadow-2xl shadow-blue-200">
-            <div class="scratch-content">
-                YOU ARE THE BEST BRO! 🎂
-            </div>
+    <div id="scratch-page">
+        <h1 class="glow-text" style="margin-bottom: 30px;">A Little Surprise For You...</h1>
+        <div class="scratch-container">
+            <div class="scratch-content">I Love You ❤️</div>
             <canvas id="scratch-canvas" width="300" height="150"></canvas>
         </div>
-        <p class="mt-8 text-blue-600 text-sm font-bold italic">Scratch the card for a message</p>
-        <div id="made-by" class="mt-12 opacity-0 transition-opacity duration-1000">
-             <p class="text-2xl font-black text-blue-900 ultra-glow">Made by Sivasingh ❤️</p>
-        </div>
-    </section>
+        <p style="margin-top: 20px; color: #888; font-size: 0.9rem;">Scratch the card gently 👆</p>
+    </div>
 
     <script>
-        let music = document.getElementById('bgmusic');
-        let wishesOpened = 0;
-
-        function startExperience() {
-            music.volume = 0.4;
-            music.play();
-            nextPage('wishes');
-        }
-
-        function nextPage(id) {
-            const current = document.querySelector('.section.active');
-            const next = document.getElementById(id);
+        // Page Navigation
+        function nextPage(n) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('p' + n).classList.add('active');
             
-            gsap.to(current, {opacity: 0, y: -20, duration: 0.5, onComplete: () => {
-                current.classList.remove('active');
-                next.classList.add('active');
-                gsap.fromTo(next, {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.5});
-                if(id === 'balloons') initBalloons();
-                if(id === 'scratch-page') initScratchCard();
-            }});
-        }
-
-        function openWish(txt) {
-            document.getElementById('wish-text').innerText = txt;
-            document.getElementById('wish-modal').style.display = 'flex';
-            wishesOpened++;
-            if(wishesOpened >= 1) document.getElementById('btn-next').classList.remove('hidden');
-        }
-
-        function closeWish() {
-            document.getElementById('wish-modal').style.display = 'none';
-        }
-
-        function initBalloons() {
-            const container = document.getElementById('balloon-container');
-            const colors = ['#3b82f6', '#60a5fa', '#2563eb', '#1d4ed8', '#93c5fd'];
-            let popped = 0;
-            container.innerHTML = '';
-            for(let i=0; i<6; i++) {
-                let b = document.createElement('div');
-                b.className = 'balloon';
-                b.style.left = Math.random()*80 + '%';
-                b.style.top = Math.random()*60 + '%';
-                b.style.setProperty('--balloon-color', colors[i%5]);
-                b.onclick = () => {
-                    b.style.display = 'none';
-                    confetti({particleCount: 40, spread: 50, origin: {y: 0.7}, colors: ['#3b82f6', '#ffffff']});
-                    popped++;
-                    if(popped === 6) document.getElementById('btn-scratch').classList.remove('hidden');
-                };
-                container.appendChild(b);
+            if (n === 9) showShayari();
+            if (document.getElementById('bgMusic').paused) {
+                document.getElementById('bgMusic').play().catch(e => console.log("Music needs interaction"));
             }
+        }
+
+        // Music Toggle
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const icon = document.getElementById('music-icon');
+            if (music.paused) { music.play(); icon.innerHTML = "⏸️"; } 
+            else { music.pause(); icon.innerHTML = "🎵"; }
+        }
+
+        // Floating Hearts
+        function createHeart(isSpecial = false) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-float');
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            if(isSpecial) {
+                // Bigger, faster hearts for scratch reveal
+                heart.style.fontSize = Math.random() * 30 + 20 + 'px'; 
+                heart.style.animationDuration = Math.random() * 2 + 1 + 's';
+                heart.style.zIndex = "3000";
+            } else {
+                heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+                heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            }
+            
+            document.getElementById('hearts-bg').appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(() => createHeart(false), 300); // Background hearts
+
+        // Shayari Animation
+        function showShayari() {
+            const lines = document.querySelectorAll('.shayari-line');
+            lines.forEach((line, i) => {
+                setTimeout(() => { line.classList.add('visible'); }, i * 1500);
+            });
+        }
+
+        // Love Meter Logic
+        function runMeter() {
+            let count = 0;
+            const meter = document.getElementById('loveMeter');
+            const btn = document.getElementById('meterBtn');
+            btn.style.display = 'none';
+            
+            const interval = setInterval(() => {
+                count += Math.floor(Math.random() * 5) + 1;
+                if (count >= 100) {
+                    count = 100;
+                    clearInterval(interval);
+                    document.getElementById('meterTitle').style.display = 'none';
+                    document.getElementById('meterResult').style.display = 'block';
+                    meter.style.animation = 'none';
+                    setTimeout(() => nextPage(11), 3000);
+                }
+                meter.innerText = count + '%';
+            }, 50);
+        }
+
+        // Run Away No Button
+        function moveNo() {
+            const btn = document.getElementById('noBtn');
+            // Restrict movement within reasonable bounds
+            const x = Math.random() * 200 - 100;
+            const y = Math.random() * 200 - 100;
+            btn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        // --- SCRATCH CARD LOGIC ---
+        let specialHeartInterval;
+
+        function showScratchCard() {
+            document.getElementById('scratch-page').style.display = 'flex';
+            initScratchCard();
         }
 
         function initScratchCard() {
             const canvas = document.getElementById('scratch-canvas');
             const ctx = canvas.getContext('2d');
             
-            // Silver Scratch Layer
-            ctx.fillStyle = '#cbd5e1';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // Fill canvas with scratch layer (pink gradient)
+            const grad = ctx.createLinearGradient(0, 0, 300, 150);
+            grad.addColorStop(0, '#ff85a2');
+            grad.addColorStop(1, '#ffb6c1');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 300, 150);
             
-            // Texture
-            ctx.fillStyle = '#94a3b8';
-            for(let i=0; i<200; i++) {
-                ctx.fillRect(Math.random()*canvas.width, Math.random()*canvas.height, 1, 1);
-            }
+            // Add some "scratch here" text on canvas
+            ctx.font = '20px Poppins';
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.fillText('Scratch Me ❤️', 150, 80);
 
             let isDrawing = false;
+            let scratchedPixels = 0;
+            const totalPixels = 300 * 150;
 
             function scratch(e) {
-                if(!isDrawing) return;
+                if (!isDrawing) return;
+                
                 const rect = canvas.getBoundingClientRect();
-                const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
-                const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+                const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                const y = (e.clientY || e.touches[0].clientY) - rect.top;
                 
                 ctx.globalCompositeOperation = 'destination-out';
                 ctx.beginPath();
-                ctx.arc(x, y, 25, 0, Math.PI * 2);
+                ctx.arc(x, y, 20, 0, Math.PI * 2);
                 ctx.fill();
-                checkScratch();
-            }
 
-            function checkScratch() {
-                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                let count = 0;
-                for(let i=0; i<imageData.data.length; i+=4) {
-                    if(imageData.data[i+3] === 0) count++;
-                }
-                if(count > (imageData.data.length/4) * 0.5) {
-                    canvas.style.opacity = '0';
-                    setTimeout(() => {
-                        canvas.style.display = 'none';
-                        confetti({particleCount: 150, spread: 70, colors: ['#3b82f6', '#1e3a8a']});
-                        document.getElementById('made-by').style.opacity = '1';
-                    }, 500);
+                // Start special hearts when scratching
+                if(!specialHeartInterval) {
+                    specialHeartInterval = setInterval(() => createHeart(true), 100);
                 }
             }
 
-            canvas.addEventListener('mousedown', () => isDrawing = true);
-            canvas.addEventListener('touchstart', () => isDrawing = true);
-            window.addEventListener('mouseup', () => isDrawing = false);
-            window.addEventListener('touchend', () => isDrawing = false);
+            function stopDrawing() {
+                isDrawing = false;
+                if(specialHeartInterval) {
+                    clearInterval(specialHeartInterval);
+                    specialHeartInterval = null;
+                }
+            }
+
+            canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
             canvas.addEventListener('mousemove', scratch);
-            canvas.addEventListener('touchmove', (e) => { e.preventDefault(); scratch(e); });
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseleave', stopDrawing);
+
+            canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); e.preventDefault(); });
+            canvas.addEventListener('touchmove', (e) => { scratch(e); e.preventDefault(); });
+            canvas.addEventListener('touchend', stopDrawing);
         }
     </script>
 </body>

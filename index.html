@@ -1,178 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Good Morning Arpita 💙</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Night Arpita 💖</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
-        
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@700&display=swap');
         
         body {
-            background: #ffffff;
+            margin: 0;
+            padding: 0;
+            background: #ffffff; /* White background */
+            height: 100vh;
+            overflow: hidden;
             font-family: 'Poppins', sans-serif;
-            overflow: hidden; height: 100vh; width: 100vw;
-            color: #333; user-select: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
 
-        /* Floating Hearts Background */
-        .bg-elements {
-            position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.5;
+        /* Floating Balloons with Text */
+        .balloon {
+            position: absolute;
+            width: 110px;
+            height: 130px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: white;
+            padding: 8px;
+            box-sizing: border-box;
+            animation: floatUp 9s linear infinite;
+            z-index: 5;
+            box-shadow: inset -8px -8px 15px rgba(0,0,0,0.1);
         }
 
-        .slide {
-            display: none; position: fixed; inset: 0; width: 100%; height: 100%;
-            align-items: center; justify-content: center; flex-direction: column;
-            opacity: 0; z-index: 20; padding: 30px; text-align: center;
-            transition: all 0.8s ease-in-out;
-            background: rgba(255, 255, 255, 0.95);
-        }
-        .slide.active { display: flex; opacity: 1; }
-
-        /* BLUE GLOWING TEXT EFFECT */
-        .glow-blue { 
-            font-family: 'Dancing Script', cursive; 
-            color: #0077ff; 
-            text-shadow: 0 0 10px rgba(0, 119, 255, 0.6), 0 0 20px rgba(0, 119, 255, 0.4); 
-            font-size: clamp(2.5rem, 9vw, 3.5rem); 
-            margin-bottom: 15px;
-            animation: pulseGlow 2s infinite alternate;
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            width: 2px;
+            height: 40px;
+            background: rgba(0,0,0,0.15);
         }
 
-        @keyframes pulseGlow {
-            from { text-shadow: 0 0 10px rgba(0, 119, 255, 0.6); }
-            to { text-shadow: 0 0 25px rgba(0, 119, 255, 0.9), 0 0 35px rgba(0, 119, 255, 0.4); }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); }
+            100% { transform: translateY(-25vh) rotate(15deg); }
         }
 
-        .sub-msg { color: #555; font-weight: 400; font-size: 1.1rem; line-height: 1.6; max-width: 80%; }
-        
-        /* Romantic Photo Frame */
-        .photo-frame { 
-            width: 280px; height: 350px; border-radius: 20px; 
-            border: 8px solid #fff; box-shadow: 0 20px 40px rgba(0,119,255,0.15); 
-            object-fit: cover; margin-bottom: 25px;
-            transform: rotate(-2deg); transition: 0.5s;
+        .container {
+            text-align: center;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
-        .slide.active .photo-frame { transform: rotate(0deg) scale(1.05); }
 
-        .btn-blue { 
-            background: #0077ff; color: white;
-            padding: 12px 35px; border-radius: 50px; font-weight: 600; 
-            box-shadow: 0 10px 20px rgba(0, 119, 255, 0.3); 
-            cursor: pointer; margin-top: 30px; transition: 0.3s;
-            border: none; outline: none;
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem;
+            color: #ff3366;
+            margin-bottom: 10px;
         }
-        .btn-blue:active { transform: scale(0.9); }
 
-        /* Progress Bar for Hold */
-        .hold-container { width: 200px; height: 8px; background: #f0f0f0; border-radius: 10px; margin-top: 20px; overflow: hidden; }
-        #holdProgress { height: 100%; background: #0077ff; width: 0%; }
+        /* Scratch Card Styling */
+        .scratch-container {
+            margin: 25px auto;
+            width: 320px;
+            height: 190px;
+            position: relative;
+            user-select: none;
+            touch-action: none;
+        }
 
+        #scratch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: crosshair;
+            z-index: 2;
+            border-radius: 15px;
+        }
+
+        .inner-content {
+            width: 100%;
+            height: 100%;
+            background: #eef7ff;
+            border: 2px dashed #0099ff;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #0055ff; /* Blue text color */
+            font-weight: 600;
+            font-size: 1.15rem;
+            line-height: 1.5;
+        }
+
+        .gn-bold {
+            font-size: 1.9rem;
+            color: #0033aa;
+            display: block;
+            margin: 8px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .footer {
+            color: #ff4d88;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="tere-liye.mp3" type="audio/mpeg">
-    </audio>
-
-    <div class="bg-elements"></div>
-
-    <div id="slide1" class="slide active">
-        <img src="photo1.jpg" class="photo-frame">
-        <h1 class="glow-blue">Good Morning, Arpita!</h1>
-        <p class="sub-msg">The sun is up, but my world starts when you wake up. 💙</p>
-        <button onclick="startExperience()" class="btn-blue">Wake Up My Love ☕</button>
-    </div>
-
-    <div id="slide2" class="slide">
-        <img src="photo2.jpg" class="photo-frame">
-        <h1 class="glow-blue">Thinking of You</h1>
-        <p class="sub-msg">I hope your morning is as bright and beautiful as your soul, Arpita.</p>
-        <button onclick="next()" class="btn-blue">Keep Smiling ✨</button>
-    </div>
-
-    <div id="slide3" class="slide">
-        <img src="photo3.jpg" class="photo-frame">
-        <h1 class="glow-blue">My Purest Joy</h1>
-        <p class="sub-msg">Everything is better when you are by my side. Have a wonderful day!</p>
-        <button onclick="next()" class="btn-blue">Next Surprise 🌸</button>
-    </div>
-
-    <div id="slide4" class="slide">
-        <h1 class="glow-blue">Hold for Love</h1>
-        <p class="sub-msg">Arpita, press and hold the button to send me a virtual hug!</p>
-        <div class="hold-container"><div id="holdProgress"></div></div>
-        <button id="holdBtn" class="btn-blue select-none">PRESS & HOLD 💙</button>
-    </div>
-
-    <div id="slide5" class="slide">
-        <img src="photo4.jpg" class="photo-frame">
-        <h1 class="glow-blue">Sweet Arpita</h1>
-        <p class="sub-msg">Just a little reminder that you are loved more than words can say.</p>
-        <button onclick="next()" class="btn-blue">One More... 🦋</button>
-    </div>
-
-    <div id="slide6" class="slide">
-        <img src="photo5.jpg" class="photo-frame">
-        <h1 class="glow-blue">Be My Sunshine</h1>
-        <p class="sub-msg">Go out there and shine today, my queen. You've got this!</p>
-        <button onclick="next()" class="btn-blue">Click for Last Page 🎁</button>
-    </div>
-
-    <div id="slide7" class="slide">
-        <div class="flex gap-2">
-            <img src="photo6.jpg" class="photo-frame" style="width: 140px; height: 180px;">
-            <img src="photo7.jpg" class="photo-frame" style="width: 140px; height: 180px;">
+    <div class="container">
+        <h1>Arpita &amp; Sivasingh 💖</h1>
+        
+        <div class="scratch-container">
+            <div class="inner-content">
+                <div>
+                    Abhi soye nahi 🤨?<br>
+                    Chalo achhe bachho ki tarah<br>
+                    nini karo jaldi se... 💤<br>
+                    <span class="gn-bold">Aur mujhe Good Night bhejo 💖</span>
+                    Sirf Gn nhi🤨 Kal jo missing tha vo bhi... 😁<br>
+                    heart emoji and 🤭🤭🤭🤭! ❤️
+                </div>
+            </div>
+            <canvas id="scratch-canvas" width="320" height="190"></canvas>
         </div>
-        <h1 class="glow-blue">Forever Yours</h1>
-        <p class="sub-msg">Good Morning, Arpita! I'm so lucky to have you in my life. I love you (as frnd)!💙</p>
-        <p class="mt-10 text-xs text-gray-400">Made with love for Arpita</p>
+
+        <div class="footer">
+            Card ko scratch karke dekho ✨
+        </div>
     </div>
 
     <script>
-        let step = 1;
-        const music = document.getElementById('bgMusic');
-
-        function startExperience() {
-            // Start music on first interaction
-            music.play().catch(error => console.log("Audio play failed:", error));
-            next();
+        // 1. Colorful Balloons Logic
+        const colors = ['#ff4d6d', '#00b4d8', '#ffb703', '#70e000', '#9d4edd', '#fb6f92'];
+        
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.innerText = "Arpita Sivasingh";
+            
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.backgroundColor = color;
+            balloon.style.left = Math.random() * 85 + 'vw';
+            balloon.style.animationDuration = (Math.random() * 4 + 8) + 's';
+            
+            document.body.appendChild(balloon);
+            setTimeout(() => balloon.remove(), 12000);
         }
 
-        function next() {
-            const current = document.getElementById('slide' + step);
-            if(current) current.classList.remove('active');
-            step++;
-            setTimeout(() => {
-                const nextS = document.getElementById('slide' + step);
-                if(nextS) nextS.classList.add('active');
-            }, 100);
+        // Initial burst and continuous flow
+        for(let i=0; i<5; i++) setTimeout(createBalloon, i*500);
+        setInterval(createBalloon, 1800);
+
+        // 2. Scratch Card Logic
+        const canvas = document.getElementById('scratch-canvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        // Fill with scratchable silver layer
+        ctx.fillStyle = '#d1d1d1'; 
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Pattern on silver layer
+        ctx.fillStyle = '#888';
+        ctx.font = 'bold 18px Poppins';
+        ctx.textAlign = 'center';
+        ctx.fillText('Yahan scratch karo 💖', canvas.width/2, canvas.height/2 + 5);
+
+        function scratch(e) {
+            if (!isDrawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+            const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 25, 0, Math.PI * 2);
+            ctx.fill();
         }
 
-        // Hold Logic for Page 4
-        let hVal = 0, hInt;
-        const hBtn = document.getElementById('holdBtn'), hProg = document.getElementById('holdProgress');
-        
-        const startH = (e) => { 
-            e.preventDefault(); 
-            hInt = setInterval(() => { 
-                hVal += 2; 
-                hProg.style.width = hVal + '%'; 
-                if(hVal >= 100) { 
-                    clearInterval(hInt); 
-                    next(); 
-                } 
-            }, 30); 
-        };
-        const endH = () => { clearInterval(hInt); hVal = 0; hProg.style.width = '0%'; };
-        
-        hBtn.addEventListener('touchstart', startH);
-        hBtn.addEventListener('mousedown', startH);
-        window.addEventListener('touchend', endH);
-        window.addEventListener('mouseup', endH);
+        canvas.addEventListener('mousedown', () => isDrawing = true);
+        canvas.addEventListener('touchstart', (e) => { isDrawing = true; e.preventDefault(); });
+        window.addEventListener('mouseup', () => isDrawing = false);
+        window.addEventListener('touchend', () => isDrawing = false);
+        canvas.addEventListener('mousemove', scratch);
+        canvas.addEventListener('touchmove', (e) => { scratch(e); e.preventDefault(); });
+
     </script>
 </body>
 </html>
